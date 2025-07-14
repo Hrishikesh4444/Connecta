@@ -1,0 +1,261 @@
+.homeComponent {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 750px;
+  width: 100%;
+}
+
+.createPost_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fff6f6;
+  padding: 1rem;
+  border-radius: 20px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.userProfile {
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  object-fit: cover;
+}
+
+.textAreaOfContent {
+  flex: 1;
+  min-height: 60px;
+  border: 1px solid silver;
+  border-radius: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0.8rem 1rem;
+  resize: none;
+}
+
+.fab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c1c1c1;
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.fab::after {
+  content: "Add picture";
+  position: absolute;
+  bottom: -2rem;
+  background: #333;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.fab:hover::after {
+  opacity: 1;
+}
+
+
+.fab > svg {
+  height: 28px;
+  width: 28px;
+}
+
+.uploadButton {
+  position: absolute;
+  right: 1rem;
+  bottom: -1.8rem;
+  background: #025d9e;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.singleCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.singleCard_profileContainer {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.singleCard_profileContainer > img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.singleCard_img {
+  margin-top: 1rem;
+}
+
+.singleCard_img > img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.optionContainer {
+  display: flex;
+  justify-content: space-evenly;
+
+  margin-top: 0.8rem;
+}
+
+.singleOption_conatiner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+ 
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.singleOption_conatiner:hover {
+  color: #025d9e;
+}
+
+.singleOption_conatiner > svg {
+  height: 20px;
+  width: 20px;
+}
+
+.commentsContainer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.allCommentsConatiner {
+  background: white;
+  width: 500px;
+  max-width: 95%;
+  height: 80vh;
+  padding: 1.5rem;
+  border-radius: 10px;
+  overflow-y: auto;
+  position: relative;
+}
+.cross_icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #444;
+  
+}
+
+.singleComponent {
+  margin-bottom: 1rem;
+}
+
+.singleComment_conatiner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.7rem;
+}
+
+.singleComment_conatiner > img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postCommentContainer {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.postCommentContainer > input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background-color: #e4e4e4;
+  border: none;
+  outline: none;
+}
+
+.postCommentContainer > input:focus {
+  border: 1px solid #aaa;
+}
+
+.postCommentContainer_commentBtn {
+  background: #333;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.postCommentContainer_commentBtn:hover {
+  background: #025d9e;
+}
+
+@media (max-width: 600px) {
+  .allCommentsConatiner {
+    width: 90vw;
+  }
+
+  .singleCard_profileContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .textAreaOfContent {
+    width: 100%;
+  }
+
+  .uploadButton {
+    right: 0.5rem;
+  }
+}

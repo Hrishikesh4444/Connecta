@@ -1,0 +1,92 @@
+.userCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.userCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+}
+
+.profilePicture > img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile_button_div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfo h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.userInfo p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #777;
+}
+
+.acceptButton {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background-color: rgba(3, 91, 183, 0.1);
+  color: rgba(3, 91, 183, 1);
+  border: 1px solid rgba(3, 91, 183, 1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.acceptButton:hover {
+  background-color: rgba(3, 91, 183, 0.2);
+}
+.rejectButton {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background-color: rgb(231, 216, 214);
+  color: rgb(183, 30, 3);
+  border: 1px solid rgb(183, 30, 3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.rejectButton:hover {
+  background-color: rgb(228, 199, 194);
+}
+
+.myConnections,
+.allRequests {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
