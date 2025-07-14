@@ -43,8 +43,8 @@ export default function ProfilePage() {
   };
 
   useEffect(() => {
-    dispatch(getAboutUser({ token: localStorage.getItem("token") }));
-    dispatch(getAllPosts({ token: localStorage.getItem("token") }));
+    dispatch(getAboutUser({ token: sessionStorage.getItem("token") }));
+    dispatch(getAllPosts({ token: sessionStorage.getItem("token") }));
     dispatch(getAllUsers());
   }, []);
 
@@ -61,7 +61,7 @@ export default function ProfilePage() {
   const updateProfilePicture = async (file) => {
     const formData = new FormData();
     formData.append("profile_picture", file);
-    formData.append("token", localStorage.getItem("token"));
+    formData.append("token", sessionStorage.getItem("token"));
 
     await clientServer.post("/upload_profile_picture", formData, {
       headers: {
@@ -69,24 +69,24 @@ export default function ProfilePage() {
       },
     });
 
-    dispatch(getAboutUser({ token: localStorage.getItem("token") }));
+    dispatch(getAboutUser({ token: sessionStorage.getItem("token") }));
   };
 
   const updateProfileData = async () => {
     await clientServer.post("/user_update", {
-      token: localStorage.getItem("token"),
+      token: sessionStorage.getItem("token"),
       name: userProfile.userId.name,
     });
 
     await clientServer.post("/update_profile_data", {
-      token: localStorage.getItem("token"),
+      token: sessionStorage.getItem("token"),
       bio: userProfile.bio,
       currentPost: userProfile.currentPost,
       pastWork: userProfile.pastWork,
       education: userProfile.education,
     });
 
-    dispatch(getAboutUser({ token: localStorage.getItem("token") }));
+    dispatch(getAboutUser({ token: sessionStorage.getItem("token") }));
   };
 
   return (

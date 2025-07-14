@@ -12,7 +12,7 @@ export const loginUser= createAsyncThunk(
            }) 
 
             if(response.data.token){
-                localStorage.setItem("token",response.data.token)
+                sessionStorage.setItem("token",response.data.token)
             }
             else{
                 return thunkAPI.rejectWithValue({

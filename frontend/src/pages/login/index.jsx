@@ -21,7 +21,7 @@ export default function index() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (sessionStorage.getItem("token")) {
       router.push("/dashboard");
     }
   }, []);

@@ -34,16 +34,16 @@ export default function ViewProfile({ userProfile }) {
   const [isConnectionNull, setIsConnectionNull] = useState(true);
 
   const getUserPost = async () => {
-    dispatch(getAboutUser({ token: localStorage.getItem("token") }));
+    dispatch(getAboutUser({ token: sessionStorage.getItem("token") }));
 
     await dispatch(getAllPosts());
 
     await dispatch(
-      getConnectionRequest({ token: localStorage.getItem("token") })
+      getConnectionRequest({ token: sessionStorage.getItem("token") })
     );
     await dispatch(getAllUsers());
     await dispatch(
-      getMyConnectionRequests({ token: localStorage.getItem("token") })
+      getMyConnectionRequests({ token: sessionStorage.getItem("token") })
     );
 
     console.log(authState.connections);
@@ -145,7 +145,7 @@ export default function ViewProfile({ userProfile }) {
                             onClick={async () => {
                               dispatch(
                                 sendConnectionRequest({
-                                  token: localStorage.getItem("token"),
+                                  token: sessionStorage.getItem("token"),
                                   user_id: userProfile.userId._id,
                                 })
                               );
@@ -154,7 +154,7 @@ export default function ViewProfile({ userProfile }) {
 
                               await dispatch(
                                 getConnectionRequest({
-                                  token: localStorage.getItem("token"),
+                                  token: sessionStorage.getItem("token"),
                                 })
                               );
                              

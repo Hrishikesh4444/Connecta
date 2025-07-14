@@ -26,7 +26,7 @@ export const createPost = createAsyncThunk(
 
             const formData = new FormData()
 
-            formData.append('token', localStorage.getItem('token'))
+            formData.append('token', sessionStorage.getItem('token'))
 
             formData.append('body', body)
 
@@ -58,7 +58,7 @@ export const deletePost = createAsyncThunk(
         try {
             const response = await clientServer.post("/delete_post", {
 
-                token: localStorage.getItem("token"),
+                token: sessionStorage.getItem("token"),
                 post_id: post_id.post_id
 
             })
@@ -77,7 +77,7 @@ export const incrementLikes=createAsyncThunk(
 
         try {
             const response=await clientServer.post(`increment_post_like`,{
-                token: localStorage.getItem('token'),
+                token: sessionStorage.getItem('token'),
                 post_id: post.post_id
             })
 
@@ -115,7 +115,7 @@ export const postComment=createAsyncThunk(
     async(commentData,thunkAPI)=>{
         try {
             const response=await clientServer.post("/comment",{
-                token: localStorage.getItem("token"),
+                token: sessionStorage.getItem("token"),
                 post_id: commentData.post_id,
                 commentBody: commentData.body
             })

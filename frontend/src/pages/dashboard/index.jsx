@@ -26,9 +26,9 @@ export default function index() {
   const postState = useSelector((state) => state.postsReducer);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (sessionStorage.getItem("token")) {
       dispatch(getAllPosts());
-      dispatch(getAboutUser({ token: localStorage.getItem("token") }));
+      dispatch(getAboutUser({ token: sessionStorage.getItem("token") }));
     }
     if (!authState.all_profiles_fetched) {
       dispatch(getAllUsers());

@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }) {
   const authState=useSelector((state)=> state.auth)
     useEffect(() => {
 
-      if (!localStorage.getItem("token")) {
+      if (!sessionStorage.getItem("token")) {
         router.push("/login");
       }
       dispatch(setIsTokenThere());

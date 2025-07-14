@@ -18,8 +18,8 @@ export default function ConnectionsPage() {
   const authState = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(getMyConnectionRequests({ token: localStorage.getItem("token") }));
-    dispatch(getConnectionRequest({ token: localStorage.getItem("token") }));
+    dispatch(getMyConnectionRequests({ token: sessionStorage.getItem("token") }));
+    dispatch(getConnectionRequest({ token: sessionStorage.getItem("token") }));
     dispatch(getAllUsers());
   }, []);
 
@@ -85,7 +85,7 @@ export default function ConnectionsPage() {
                               dispatch(
                                 acceptConnection({
                                   connectionId: user._id,
-                                  token: localStorage.getItem("token"),
+                                  token: sessionStorage.getItem("token"),
                                   action: "accept",
                                 })
                               );
@@ -100,7 +100,7 @@ export default function ConnectionsPage() {
                               dispatch(
                                 acceptConnection({
                                   connectionId: user._id,
-                                  token: localStorage.getItem("token"),
+                                  token: sessionStorage.getItem("token"),
                                   action: "reject",
                                 })
                               );

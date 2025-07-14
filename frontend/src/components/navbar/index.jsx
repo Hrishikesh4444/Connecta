@@ -13,7 +13,7 @@ const Navbar = () => {
   const dispatch=useDispatch()
 
   useEffect(()=>{
-    dispatch(getAboutUser({ token: localStorage.getItem("token") }))
+    dispatch(getAboutUser({ token: sessionStorage.getItem("token") }))
   },[])
   return (
     <div className={styles.container}>
@@ -35,7 +35,7 @@ const Navbar = () => {
               
               <p onClick={()=> router.push("/profile")} style={{fontWeight: "bold",cursor: "pointer"}} className={styles.profile}> Profile</p>
               <p onClick={()=>{
-                localStorage.removeItem('token')
+                sessionStorage.removeItem('token')
                 router.push('/login')
                 dispatch(reset())
               }} style={{fontWeight: "bold",cursor: "pointer"}} className={styles.logout}> Log out</p>
