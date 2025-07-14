@@ -96,7 +96,10 @@ export default function ProfilePage() {
           <div className={styles.userProfileContainer}>
             <div className={styles.backDropContainer}>
               <div className={styles.backDrop}>
-                <label className={styles.backDrop_overlay} htmlFor="profile_picture">
+                <label
+                  className={styles.backDrop_overlay}
+                  htmlFor="profile_picture"
+                >
                   Edit
                 </label>
                 <input
@@ -115,13 +118,7 @@ export default function ProfilePage() {
             <div className={styles.profileConatiner_details}>
               <div style={{ display: "flex", gap: "0.7rem" }}>
                 <div style={{ flex: "0.7" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "1.2rem",
-                    }}
-                  >
+                  <div className={styles.nameUsernameWrapper}>
                     <input
                       type="text"
                       className={styles.name}
@@ -133,16 +130,24 @@ export default function ProfilePage() {
                         }))
                       }
                     />
-                    <p>@{userProfile.userId.username}</p>
+                    <p className={styles.username}>
+                      @{userProfile.userId.username}
+                    </p>
                   </div>
 
                   <div style={{ margin: "1rem 0" }}>
                     <textarea
                       className={styles.bio}
                       value={userProfile.bio}
-                      rows={Math.min(3, Math.ceil(userProfile.bio?.length / 80))}
+                      rows={Math.min(
+                        3,
+                        Math.ceil(userProfile.bio?.length / 80)
+                      )}
                       onChange={(e) =>
-                        setUserProfile((prev) => ({ ...prev, bio: e.target.value }))
+                        setUserProfile((prev) => ({
+                          ...prev,
+                          bio: e.target.value,
+                        }))
                       }
                     />
                   </div>
@@ -152,15 +157,22 @@ export default function ProfilePage() {
 
             <div className={styles.workHistory}>
               <h4>Work History</h4>
-              {userProfile.pastWork.length===0 && <p>No work history</p>}
+              {userProfile.pastWork.length === 0 && <p>No work history</p>}
               <div className={styles.workHistoryContainer}>
                 {userProfile.pastWork?.map((work, index) => (
                   <div key={index} className={styles.workHistoryCard}>
-                    <p><strong>{work.company} - {work.position}</strong></p>
+                    <p>
+                      <strong>
+                        {work.company} - {work.position}
+                      </strong>
+                    </p>
                     <p>{work.years} years</p>
                   </div>
                 ))}
-                <button className={styles.addWorkButton} onClick={() => setIsModalOpen(true)}>
+                <button
+                  className={styles.addWorkButton}
+                  onClick={() => setIsModalOpen(true)}
+                >
                   Add Work
                 </button>
               </div>
@@ -168,15 +180,24 @@ export default function ProfilePage() {
 
             <div className={styles.workHistory}>
               <h4>Education</h4>
-              {userProfile.education.length===0 && <p>No education details</p>}
+              {userProfile.education.length === 0 && (
+                <p>No education details</p>
+              )}
               <div className={styles.workHistoryContainer}>
                 {userProfile.education?.map((edu, index) => (
                   <div key={index} className={styles.workHistoryCard}>
-                    <p><strong>{edu.school} - {edu.degree}</strong></p>
+                    <p>
+                      <strong>
+                        {edu.school} - {edu.degree}
+                      </strong>
+                    </p>
                     <p>{edu.fieldStudy}</p>
                   </div>
                 ))}
-                <button className={styles.addWorkButton} onClick={() => setIsEducationModalOpen(true)}>
+                <button
+                  className={styles.addWorkButton}
+                  onClick={() => setIsEducationModalOpen(true)}
+                >
                   Add Education
                 </button>
               </div>
@@ -208,10 +229,15 @@ export default function ProfilePage() {
           </div>
         )}
 
-       
         {isModalOpen && (
-          <div className={styles.commentsContainer} onClick={() => setIsModalOpen(false)}>
-            <div className={styles.allCommentsConatiner} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={styles.commentsContainer}
+            onClick={() => setIsModalOpen(false)}
+          >
+            <div
+              className={styles.allCommentsConatiner}
+              onClick={(e) => e.stopPropagation()}
+            >
               <h4>Enter Work History</h4>
               <input
                 name="company"
@@ -247,10 +273,15 @@ export default function ProfilePage() {
           </div>
         )}
 
-        
         {isEducationModalOpen && (
-          <div className={styles.commentsContainer} onClick={() => setIsEducationModalOpen(false)}>
-            <div className={styles.allCommentsConatiner} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={styles.commentsContainer}
+            onClick={() => setIsEducationModalOpen(false)}
+          >
+            <div
+              className={styles.allCommentsConatiner}
+              onClick={(e) => e.stopPropagation()}
+            >
               <h4>Enter Education Details</h4>
               <input
                 name="school"

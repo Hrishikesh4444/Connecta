@@ -79,7 +79,29 @@
   resize: none;
   width: 100%;
 }
+.nameUsernameWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+}
 
+.name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  outline: none;
+  max-width: 100%;
+}
+
+.username {
+  font-size: 1rem;
+  color: #555;
+  word-break: break-word;
+  max-width: 100%;
+}
 .postCard {
   width: 50%;
   margin-bottom: 1rem;
@@ -219,6 +241,15 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+    .name {
+    font-size: 1.2rem;
+  }
+
+  .username {
+    font-size: 0.9rem;
+  }
+
 }
 
 
@@ -235,5 +266,8 @@
     font-size: 1.2rem;
   }
 
-  
+  .bio {
+    font-size: 0.85rem;
+  }
 }
+

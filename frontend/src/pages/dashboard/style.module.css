@@ -258,4 +258,7 @@
   .uploadButton {
     right: 0.5rem;
   }
+  .postCommentContainer_commentBtn {
+    width: 4rem;
+  }
 }
