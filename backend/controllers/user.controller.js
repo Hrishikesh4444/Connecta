@@ -13,9 +13,9 @@ const convertUserDataToPDF=(userData)=>{
     const outputPath=crypto.randomBytes(32).toString("hex")+".pdf"
 
     const stream=fs.createWriteStream("uploads/"+outputPath)
-
+    //Creates a stream to write data into a file  , The file will be created inside the uploads folder
     doc.pipe(stream)
-
+     //pipe() connects the PDF output → file stream.
     doc.image(`uploads/${userData.userId.profilePicture}`,{align: "center",width: 100})
     doc.moveDown();
     doc.fontSize(14).text(`Name: ${userData.userId.name}`)
