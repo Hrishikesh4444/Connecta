@@ -282,7 +282,10 @@ export default function ViewProfile({ userProfile }) {
     </div>
   );
 }
-
+// getServerSideProps is a special function that:
+// runs on the server before the page loads
+// fetches data
+// passes it to your component as props
 export async function getServerSideProps(context) {
   console.log(context.query.username);
 
