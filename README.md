@@ -15,7 +15,14 @@ Connecta is a full-stack social networking web application inspired by platforms
 - View posts of specific users
 - Download user resume
 
-
+##✨ AI Post Assistant
+Seamlessly integrated into the post creation flow, users can click "Write with AI" to access a suite of intelligent tools powered by Google's Gemini model:
+- Generate: Create a full, professional post from a simple topic.
+- Rewrite: Instantly rewrite drafts to sound more professional and engaging.
+- Grammar Check: Automatically fix spelling and grammatical errors.
+- Adjust Length: Make posts shorter and concise, or longer and more detailed.
+- Hashtags & Titles: Generate relevant hashtags and catchy headlines automatically.
+- Emojis: Intelligently add professional emojis to make the post visually engaging.
 
 ## Tech Stack
 
@@ -24,6 +31,8 @@ Connecta is a full-stack social networking web application inspired by platforms
 **Backend:** Node.js, Express.js
 
 **Database** MongoDB
+
+**AI Integration** LangChain, Google Gemini API
 
 **Other Tools** Axios JWT Authentication
 
@@ -111,4 +120,6 @@ Demo: http://connecta-nine.vercel.app
 - Managing global state using Redux
 - Designing scalable backend APIs
 - Handling authentication using JWT
+- Integrating Generative AI into web applications using LangChain.js
+- Applying Prompt Engineering techniques to structure LLM outputs dynamically
 - Real-world feature implementation (connections, profiles, posts)
