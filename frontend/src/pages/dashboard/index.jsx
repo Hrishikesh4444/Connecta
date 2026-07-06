@@ -69,7 +69,7 @@ export default function index() {
         setIsAILoading(true);
         try {
             // Adjust the URL if your backend runs on a different port (e.g., localhost:8000)
-            const response = await fetch("http://localhost:9000/assistant", {
+            const response = await fetch(`${base_URL}/assistant`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
