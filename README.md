@@ -15,7 +15,7 @@ Connecta is a full-stack social networking web application inspired by platforms
 - View posts of specific users
 - Download user resume
 
-##✨ AI Post Assistant
+## ✨ AI Post Assistant
 Seamlessly integrated into the post creation flow, users can click "Write with AI" to access a suite of intelligent tools powered by Google's Gemini model:
 - Generate: Create a full, professional post from a simple topic.
 - Rewrite: Instantly rewrite drafts to sound more professional and engaging.
