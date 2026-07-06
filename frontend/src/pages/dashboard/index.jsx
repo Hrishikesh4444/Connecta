@@ -10,7 +10,7 @@ import {
 import DashboardLayout from "@/layout/dashboardLayout";
 import UserLayout from "@/layout/userLayout";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./style.module.css";
 import { base_URL } from "@/config";
@@ -38,6 +38,19 @@ export default function index() {
   const [postContent, setPostContent] = useState("");
   const [fileContent, setFileContent] = useState();
   const [commentText, setCommentText] = useState("");
+  const [postBody, setPostBody] = useState("");
+  const [showAITools, setShowAITools] = useState(false);
+  const [isAILoading, setIsAILoading] = useState(false);
+
+  const textareaRef = useRef(null);
+  useEffect(() => {
+    if (textareaRef.current) {
+      // Reset the height to 'auto' first so it can shrink if the user deletes text
+      textareaRef.current.style.height = "auto";
+      // Set the height to match the scroll height of the text
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [postContent]);
 
   const handleUpload = async () => {
     await dispatch(createPost({ file: fileContent, body: postContent }));
@@ -46,6 +59,40 @@ export default function index() {
     setFileContent(null);
     await dispatch(getAllPosts());
   };
+
+  const handleAIAction = async (action) => {
+        if (!postContent.trim()) {
+            alert("Please type something first!");
+            return;
+        }
+
+        setIsAILoading(true);
+        try {
+            // Adjust the URL if your backend runs on a different port (e.g., localhost:8000)
+            const response = await fetch("http://localhost:9000/assistant", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    action: action,
+                    content: postContent,
+                    topic: postContent
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (action === 'hashtags' || action === 'title') {
+                setPostContent((prev) => prev + "\n\n" + data.result);
+            } else {
+                setPostContent(data.result); 
+            }
+        } catch (error) {
+            console.error("AI Error:", error);
+            alert("Failed to connect to AI assistant.");
+        } finally {
+            setIsAILoading(false);
+        }
+    };
 
   if (authState.user) {
     return (
@@ -62,15 +109,47 @@ export default function index() {
                   />
                 )}
 
-                <textarea
-                  name=""
-                  id=""
-                  className={styles.textAreaOfContent}
-                  onChange={(e) => setPostContent(e.target.value)}
-                  value={postContent}
-                  placeholder="What's in your mind?"
-                ></textarea>
+                <div className={styles.postInputArea}>
+                    <textarea
+                      ref={textareaRef}
+                      name=""
+                      id=""
+                      className={styles.textAreaOfContent}
+                      onChange={(e) => setPostContent(e.target.value)}
+                      value={postContent}
+                      placeholder="What's in your mind?"
+                      rows={1}
+                    ></textarea>
 
+                    <div className={styles.aiToggleContainer}>
+                        <button 
+                            className={styles.aiToggleBtn}
+                            onClick={() => setShowAITools(!showAITools)}
+                        >
+                            ✨ {showAITools ? "Hide AI Assistant" : "Write with AI"}
+                        </button>
+                    </div>
+
+                    {showAITools && (
+                        <div className={styles.aiToolbar}>
+                            {isAILoading ? (
+                                <div className={styles.aiLoading}>
+                                    <span className={styles.spinner}>✨</span> AI is thinking...
+                                </div>
+                            ) : (
+                                <>
+                                    <button className={styles.aiActionBtn} onClick={() => handleAIAction('generate')}>Generate</button>
+                                    <button className={styles.aiActionBtn} onClick={() => handleAIAction('rewrite')}>Rewrite</button>
+                                    <button className={styles.aiActionBtn} onClick={() => handleAIAction('grammar')}>Grammar</button>
+                                    <button className={styles.aiActionBtn} onClick={() => handleAIAction('shorter')}>Shorter</button>
+                                    <button className={styles.aiActionBtn} onClick={() => handleAIAction('longer')}>Longer</button>
+                                    <button className={styles.aiActionBtn} onClick={() => handleAIAction('hashtags')}># Hashtags</button>
+                                    <button className={styles.aiActionBtn} onClick={() => handleAIAction('emojis')}>Emojis</button>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
                 <label htmlFor="fileUpload">
                   <div className={styles.fab}>
                     <svg

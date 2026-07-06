@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 import postRoutes from "./routes/post.routes.js"
 import userRoutes from "./routes/user.routes.js"
+import aiRoutes from "./routes/ai.routes.js";
 dotenv.config()
 
 const app=express()
@@ -14,6 +15,7 @@ app.use(express.static("uploads"))
 
 app.use(postRoutes)
 app.use(userRoutes)
+app.use(aiRoutes)
 
 app.set('port',9000)
 const start=async()=>{
