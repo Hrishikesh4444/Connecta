@@ -16,7 +16,7 @@ Connecta is a full-stack social networking web application inspired by platforms
 - Download user resume
 
 ## ✨ AI Post Assistant
-Seamlessly integrated into the post creation flow, users can click "Write with AI" to access a suite of intelligent tools powered by Google's Gemini model:
+Seamlessly integrated into the post creation flow, users can click "Write with AI" to access a suite of intelligent tools powered by Groq API (Llama 3):
 - Generate: Create a full, professional post from a simple topic.
 - Rewrite: Instantly rewrite drafts to sound more professional and engaging.
 - Grammar Check: Automatically fix spelling and grammatical errors.
@@ -32,7 +32,7 @@ Seamlessly integrated into the post creation flow, users can click "Write with A
 
 **Database** MongoDB
 
-**AI Integration** LangChain, Google Gemini API
+**AI Integration** LangChain, Groq API (Llama 3)
 
 **Other Tools** Axios JWT Authentication
 
