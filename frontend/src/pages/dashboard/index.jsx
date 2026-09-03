@@ -60,39 +60,86 @@ export default function index() {
     await dispatch(getAllPosts());
   };
 
+  // const handleAIAction = async (action) => {
+  //       if (!postContent.trim()) {
+  //           alert("Please type something first!");
+  //           return;
+  //       }
+
+  //       setIsAILoading(true);
+  //       try {
+  //           // Adjust the URL if your backend runs on a different port (e.g., localhost:8000)
+  //           const response = await fetch(`${base_URL}/assistant`, {
+  //               method: "POST",
+  //               headers: { "Content-Type": "application/json" },
+  //               body: JSON.stringify({
+  //                   action: action,
+  //                   content: postContent,
+  //                   topic: postContent
+  //               })
+  //           });
+            
+  //           const data = await response.json();
+            
+  //           if (action === 'hashtags' || action === 'title') {
+  //               setPostContent((prev) => prev + "\n\n" + data.result);
+  //           } else {
+  //               setPostContent(data.result); 
+  //           }
+  //       } catch (error) {
+  //           console.error("AI Error:", error);
+  //           alert("Failed to connect to AI assistant.");
+  //       } finally {
+  //           setIsAILoading(false);
+  //       }
+  //   };
   const handleAIAction = async (action) => {
-        if (!postContent.trim()) {
-            alert("Please type something first!");
+    if (!postContent.trim()) {
+        alert("Please type something first!");
+        return;
+    }
+
+    setIsAILoading(true);
+
+    try {
+        const response = await fetch(`${base_URL}/assistant`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                action: action,
+                content: postContent,
+                topic: postContent
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error("Backend Error:", data);
+            alert(data.message || "AI request failed");
             return;
         }
 
-        setIsAILoading(true);
-        try {
-            // Adjust the URL if your backend runs on a different port (e.g., localhost:8000)
-            const response = await fetch(`${base_URL}/assistant`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    action: action,
-                    content: postContent,
-                    topic: postContent
-                })
-            });
-            
-            const data = await response.json();
-            
-            if (action === 'hashtags' || action === 'title') {
-                setPostContent((prev) => prev + "\n\n" + data.result);
-            } else {
-                setPostContent(data.result); 
-            }
-        } catch (error) {
-            console.error("AI Error:", error);
-            alert("Failed to connect to AI assistant.");
-        } finally {
-            setIsAILoading(false);
+        if (!data.result) {
+            alert("No AI response received");
+            return;
         }
-    };
+
+        if (action === "hashtags" || action === "title") {
+            setPostContent((prev) => prev + "\n\n" + data.result);
+        } else {
+            setPostContent(data.result);
+        }
+
+    } catch (error) {
+        console.error("AI Error:", error);
+        alert("Failed to connect to AI assistant.");
+    } finally {
+        setIsAILoading(false);
+    }
+};
 
   if (authState.user) {
     return (
@@ -176,7 +223,7 @@ export default function index() {
                   id="fileUpload"
                 />
 
-                {postContent.length > 0 && (
+                {postContent?.length > 0 && (
                   <div
                     onClick={() => handleUpload()}
                     className={styles.uploadButton}
